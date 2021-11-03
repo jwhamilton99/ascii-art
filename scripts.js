@@ -135,14 +135,13 @@ function setImageName(e) {
 		document.getElementById("fileName").innerHTML = file.name;
 	}
 	document.getElementById("hiddenUploadItem").removeEventListener("change", setImageName);
-	document.getElementById("hiddenUploadItem").style.display = "block";
+	document.getElementById("hiddenUploadItem").style.display = "none";
 }
 
 function selectImage() {
 	var upload = document.getElementById("hiddenUploadItem");
 	upload.style.display = "block";
 	upload.addEventListener("change", setImageName);
-	upload.addEventListener("input", setImageName);
 	upload.click();
 }
 
