@@ -16,6 +16,16 @@
 			button {
 				cursor:pointer;
 			}
+			
+			#container {
+				display:flex;
+				flex-direction:row;
+				align-items:flex-start;
+			}
+			
+			#controls {
+				margin-left:50px;
+			}
 		
 			@media screen and (prefers-color-scheme: dark) {
 				body {
@@ -44,29 +54,41 @@
 				input {
 					font-size:5vw;
 				}
+				
+				#container {
+					flex-direction:column;
+				}
+				
+				#controls {
+					margin-left:0;
+				}
 			}
 		</style>
 	</head>
 	<body>
 		<h1>image to ascii art</h1>
-		<p>upload an image and it makes pretty ascii art</p>
-		<p>made by <a href="https://www.twitter.com/jwhamilton_">@jwhamilton_</a></p>
-		<button onclick="selectImage()">select image</button>
-		<p id="fileName">no file selected</p>
-		<button onclick="loadImage()">make ascii art</button>
-		<p id="status"> </p>
-		<br>
-		<div id="controls" style="display:none">
-			width (px): <input type="number" id="width" min="1"/><br />
-			height (px): <input type="number" id="height" min="1"/><br />
-			font size (px): <input type="number" id="fontsize" value="10" oninput="updateFontSize()" min="1"/><br /><br />
-			<button onclick="document.getElementById('fontsize').value = Math.max(document.getElementById('fontsize').value-1, 1);updateFontSize();">- font size</button>
-			<button onclick="document.getElementById('fontsize').value++;updateFontSize();">+ font size</button><br /><br />
-			<button onclick="toggleOutputColors()" id="invertButton">white on black</button><br /><br />
-			<button onclick="toggleOutputBold()" id="boldButton">bold</button><br /><br />
-			<button onclick="copyText()">copy</button>
-			<button onclick="saveText()">save</button><br /><br />
-			<p>⬇️ image is below ⬇️</p>
+		<div id="container">
+			<div id="uploadingControls">
+				upload an image and it makes pretty ascii art
+				<p>made by <a href="https://www.twitter.com/jwhamilton_">@jwhamilton_</a></p>
+				<button onclick="selectImage()">select image</button>
+				<p id="fileName">no file selected</p>
+				<button onclick="loadImage()">make ascii art</button>
+				<p id="status"> </p>
+			</div>
+			<br>
+			<div id="controls" style="display:none">
+				width (px): <input type="number" id="width" min="1"/><br />
+				height (px): <input type="number" id="height" min="1"/><br />
+				font size (px): <input type="number" id="fontsize" value="10" oninput="updateFontSize()" min="1"/><br /><br />
+				<button onclick="document.getElementById('fontsize').value = Math.max(document.getElementById('fontsize').value-1, 1);updateFontSize();">- font size</button>
+				<button onclick="document.getElementById('fontsize').value++;updateFontSize();">+ font size</button><br /><br />
+				<button onclick="toggleOutputColors()" id="invertButton">white on black</button><br /><br />
+				<button onclick="toggleOutputBold()" id="boldButton">bold</button><br /><br />
+				<button onclick="copyText()">copy</button>
+				<button onclick="saveText()">save</button><br /><br />
+				<p>⬇️ image is below ⬇️</p>
+			</div>
 		</div>
 		<br />
 		<div id="outputContainer" style="overflow-x:scroll;overflow-y:scroll;display:none">
