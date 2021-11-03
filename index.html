@@ -5,6 +5,11 @@
 		<title>image to ascii art</title>
 		<script src="scripts.js"></script>
 		<style>
+		
+			#imagePreview {
+				max-width:50vw;
+			}
+		
 			@media screen and (orientation:portrait) {
 				body {
 					font-size:5vw;
@@ -17,29 +22,41 @@
 				button {
 					font-size:5vw;
 				}
+				
+				#imagePreview {
+					max-width:90vw;
+				}
 			}
 		</style>
 	</head>
 	<body>
 		<h1>image to ascii art</h1>
-		<p>upload an image and it makes ascii art</p>
+		<p>upload an image and it makes pretty ascii art</p>
 		<p>made by <a href="https://www.twitter.com/jwhamilton_">@jwhamilton_</a></p>
-		<input type="file" id="file" name="file" /><br /><br />
+		<button onclick="selectImage()">select image</button>
+		<p id="fileName">no file selected</p>
 		<button onclick="loadImage()">make ascii art</button>
 		<p id="status"> </p>
 		<br>
 		<div id="controls" style="display:none">
-			width: <input type="number" id="width" min="1"/><br />
-			height: <input type="number" id="height" min="1"/><br />
-			font size: <input type="number" id="fontsize" value="10" oninput="updateFontSize()" min="1"/><br />
-			invert: <input type="checkbox" checked=false id="invert" oninput="updateOutputColors()" /><br />
+			width (px): <input type="number" id="width" min="1"/><br />
+			height (px): <input type="number" id="height" min="1"/><br />
+			font size (px): <input type="number" id="fontsize" value="10" oninput="updateFontSize()" min="1"/><br /><br />
+			<button onclick="document.getElementById('fontsize').value = Math.max(document.getElementById('fontsize').value-1, 1);updateFontSize();">- font size</button>
+			<button onclick="document.getElementById('fontsize').value++;updateFontSize();">+ font size</button><br /><br />
+			<button onclick="toggleOutputColors()" id="invertButton">white on black</button><br /><br />
+			<button onclick="toggleOutputBold()" id="boldButton">bold</button><br /><br />
 			<button onclick="copyText()">copy</button>
 			<button onclick="saveText()">save</button><br /><br />
-			original image: <image id="imagePreview"></image>
+			<p>⬇️ image is below ⬇️</p>
 		</div>
 		<br />
-		<div id="outputContainer" style="overflow-x:scroll;overflow-y:scroll;">
-			<p id="output" style="font-family:monospace; white-space:nowrap;font-weight:bold; margin:20px;"></p>
-		</div>
+		<div id="outputContainer" style="overflow-x:scroll;overflow-y:scroll;display:none">
+			<p id="output" style="font-family:monospace; white-space:nowrap; margin:20px;
+			  line-height: 1.2;"></p>
+		</div><br />
+		<span id="imagePreviewContainer" style="display:none">
+			original image:<br /><image id="imagePreview">
+		</span>
 	</body>
 </html>

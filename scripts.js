@@ -19,10 +19,25 @@ function saveText() {
 
 }
 
+var invert = false;
+var bold = false;
+
+function toggleOutputBold() {
+	bold = !bold;
+	updateOutputColors();
+	document.getElementById("boldButton").innerHTML = (bold) ? "normal" : "bold";
+}
+
+function toggleOutputColors() {
+	invert = !invert;
+	updateOutputColors();
+	document.getElementById("invertButton").innerHTML = (invert) ? "black on white" : "white on black";
+}
+
 function updateOutputColors() {
-	var checked = document.getElementById("invert").checked;
-	document.getElementById("outputContainer").style.backgroundColor = (checked) ? "black" : "white";
-	document.getElementById("output").style.color = (checked) ? "white" : "black";
+	document.getElementById("outputContainer").style.backgroundColor = (invert) ? "black" : "white";
+	document.getElementById("output").style.color = (invert) ? "white" : "black";
+	document.getElementById("output").style.fontWeight = (bold) ? "bold" : "normal";
 }
 
 function displayImage(values) {
@@ -94,6 +109,8 @@ function createImage(e) {
 			document.getElementById("width").value = image.width;
 			document.getElementById("height").value = image.height;
 			document.getElementById("controls").style.display = "block";
+			document.getElementById("outputContainer").style.display = "block";
+			document.getElementById("imagePreviewContainer").style.display = "block";
 		}
 		
 		document.getElementById("imagePreview").src = e.target.result;
@@ -110,16 +127,28 @@ function updateFontSize() {
 	document.getElementById("output").style.fontSize = document.getElementById("fontsize").value+"px";
 }
 
+var file;
 
+function setImageName(e) {
+	if(e.target.files.length > 0) {
+		file = e.target.files[0];
+		document.getElementById("fileName").innerHTML = file.name;
+	}
+}
+
+function selectImage() {
+	var upload = document.createElement("input");
+	upload.type = "file";
+	upload.addEventListener("input", setImageName);
+	upload.click();
+}
 
 function loadImage() {
 	let reader = new FileReader();
 	
 	reader.addEventListener("load", createImage);
 	
-	file = (document.getElementById("file").files[0]);
-	
-	if(document.getElementById("file").files.length == 0 || (!file.type.includes("jpeg") && !file.type.includes("png"))) {
+	if(file == undefined || (!file.type.includes("jpeg") && !file.type.includes("png"))) {
 		alert("please select a JPG or PNG image");
 		return;
 	}
