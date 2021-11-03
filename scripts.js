@@ -144,7 +144,6 @@ function selectImage() {
 	upload.addEventListener("change", () => {
 		alert("hello!");
 	});
-	upload.
 	upload.click();
 }
 
