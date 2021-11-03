@@ -142,6 +142,7 @@ function selectImage() {
 	var upload = document.getElementById("hiddenUploadItem");
 	upload.style.display = "block";
 	upload.addEventListener("change", setImageName);
+	upload.addEventListener("input", setImageName);
 	upload.click();
 }
 
