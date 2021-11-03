@@ -130,20 +130,16 @@ function updateFontSize() {
 var file;
 
 function setImageName(e) {
-	alert("selected image!");
 	if(e.target.files.length > 0) {
 		file = e.target.files[0];
 		document.getElementById("fileName").innerHTML = file.name;
 	}
+	document.getElementById("hiddenUploadItem").removeEventListener("change", setImageName);
 }
 
 function selectImage() {
-	var upload = document.createElement("input");
-	upload.type = "file";
-	upload.accept ="image/*";
-	upload.addEventListener("change", () => {
-		alert("hello!");
-	});
+	var upload = document.getElementById("hiddenUploadItem");
+	upload.addEventListener("change", setImageName);
 	upload.click();
 }
 

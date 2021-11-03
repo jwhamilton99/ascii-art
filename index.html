@@ -29,10 +29,6 @@
 					padding:10px;
 				}
 				
-				input {
-					font-size:5vw;
-				}
-				
 				button {
 					font-size:5vw;
 				}
@@ -44,7 +40,7 @@
 		</style>
 	</head>
 	<body>
-		<p>4</p>
+		<p>5</p>
 		<h1>image to ascii art</h1>
 		<p>upload an image and it makes pretty ascii art</p>
 		<p>made by <a href="https://www.twitter.com/jwhamilton_">@jwhamilton_</a></p>
@@ -72,5 +68,7 @@
 		<span id="imagePreviewContainer" style="display:none">
 			original image:<br /><image id="imagePreview">
 		</span>
+		<input type="file" style="opacity:0; display:none" id="hiddenUploadItem" accept="image/*"/>
+		
 	</body>
 </html>
