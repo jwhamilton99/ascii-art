@@ -142,6 +142,9 @@ function selectImage() {
 	upload.type = "file";
 	upload.accept ="image/*";
 	upload.addEventListener("change", setImageName);
+	upload.onChange = function() {
+		alert("changed 2");
+	}
 	upload.onchange = function() {
 		alert("changed");
 	}
