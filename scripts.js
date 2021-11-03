@@ -141,13 +141,10 @@ function selectImage() {
 	var upload = document.createElement("input");
 	upload.type = "file";
 	upload.accept ="image/*";
-	upload.addEventListener("change", setImageName);
-	upload.onChange = function() {
-		alert("changed 2");
-	}
-	upload.onchange = function() {
-		alert("changed");
-	}
+	upload.addEventListener("change", () => {
+		alert("hello!");
+	});
+	upload.
 	upload.click();
 }
 
