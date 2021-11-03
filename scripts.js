@@ -26,6 +26,7 @@ function updateOutputColors() {
 }
 
 function displayImage(values) {
+	console.log("creating output...");
 	output = ""
 	for(row of values) {
 		output = output + (row.map(getCharacter).toString())+"<br>";
@@ -41,7 +42,7 @@ function getCharacter(num) {
 function processRow(canvas, ctx, y) {
 	row = []
 	for(var x = 0; x < canvas.width; x++) {
-		let data = ctx.getImageData(x, y, canvas.width, canvas.height).data;
+		let data = ctx.getImageData(x, y, 1, 1).data;
 		avg = (data[0]+data[1]+data[2])/3;
 		row.push(Math.floor((avg*characters.length)/256));
 	}
@@ -116,8 +117,10 @@ function loadImage() {
 	
 	reader.addEventListener("load", createImage);
 	
-	if(document.getElementById("file").files.length == 0) {
-		alert("please select an image");
+	file = (document.getElementById("file").files[0]);
+	
+	if(document.getElementById("file").files.length == 0 || (!file.type.includes("jpeg") && !file.type.includes("png"))) {
+		alert("please select a JPG or PNG image");
 		return;
 	}
 	
@@ -128,8 +131,6 @@ function loadImage() {
 	document.getElementById("status").innerHTML = "processing...";
 	
 	updateOutputColors();
-	
-	file = (document.getElementById("file").files[0]);
 	
 	reader.readAsDataURL(file);
 }
