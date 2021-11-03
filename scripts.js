@@ -76,6 +76,20 @@ function createImage(e) {
 	
 	image.onload = function() {
 		if((document.getElementById("width").value == "" && document.getElementById("height").value == "") || document.getElementById("imagePreview").src != e.target.result) {
+			var maxDim = Math.max(image.width, image.height);
+			
+			if(maxDim > 300) {
+				if(image.width == maxDim) {
+					image.height = Math.round((image.height*300)/image.width);
+					image.width = 300;
+					alert("your image is wider than the maximum (300px), and has been resized to "+image.width+"x"+image.height+"px.");
+				} else if(image.height == maxDim) {
+					image.width = Math.round((image.width*300)/image.height);
+					image.height = 300;
+					alert("your image is taller than the maximum (300px), and has been resized to "+image.width+"x"+image.height+"px.");
+				}
+			}
+			
 			document.getElementById("width").value = image.width;
 			document.getElementById("height").value = image.height;
 			document.getElementById("controls").style.display = "block";
