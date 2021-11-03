@@ -140,7 +140,8 @@ function setImageName(e) {
 function selectImage() {
 	var upload = document.createElement("input");
 	upload.type = "file";
-	upload.addEventListener("input", setImageName);
+	upload.accept ="image/*";
+	upload.addEventListener("change", setImageName);
 	upload.click();
 }
 
