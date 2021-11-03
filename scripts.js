@@ -130,6 +130,7 @@ function updateFontSize() {
 var file;
 
 function setImageName(e) {
+	alert("selected image!");
 	if(e.target.files.length > 0) {
 		file = e.target.files[0];
 		document.getElementById("fileName").innerHTML = file.name;

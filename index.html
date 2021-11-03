@@ -10,6 +10,16 @@
 				max-width:50vw;
 			}
 		
+			@media screen and (prefers-color-scheme: dark) {
+				body {
+					background-color:black;
+					color:white;
+				}
+				a {
+					color: aqua;
+				}
+			}
+		
 			@media screen and (orientation:portrait) {
 				body {
 					font-size:5vw;
@@ -52,8 +62,7 @@
 		</div>
 		<br />
 		<div id="outputContainer" style="overflow-x:scroll;overflow-y:scroll;display:none">
-			<p id="output" style="font-family:monospace; white-space:nowrap; margin:20px;
-			  line-height: 1.2;"></p>
+			<p id="output" style="font-family:monospace; white-space:nowrap; margin:20px"></p>
 		</div><br />
 		<span id="imagePreviewContainer" style="display:none">
 			original image:<br /><image id="imagePreview">
